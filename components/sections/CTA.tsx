@@ -51,7 +51,7 @@ export default function Contact() {
                 style={{ border: 0, filter: "grayscale(0.1) contrast(1.05)" }}
                 loading="lazy"
                 allowFullScreen
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d59045.24750278144!2d-49.12462312646485!3d-22.34123519999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bf67be89115f23%3A0x6b449103c814df35!2sBauru%2C%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
+                src="https://www.google.com/maps?q=Rua+Ruy+Mendes+de+Rosis,+Jardim+Infante+Dom+Henrique,+Bauru+-+SP,+17012-636&output=embed"
                 className="absolute inset-0"
               />
             </div>

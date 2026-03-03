@@ -1,172 +1,151 @@
-"use client"; // Necessário para a lógica de scroll suave sem hash na URL
-
 import type { Metadata } from "next";
-import Image from "next/image";
+import Script from "next/script";
 import "./globals.css";
+import HeaderClient from "../components/layout/HeaderClient";
 
-const WHATSAPP_LINK =
-  "https://wa.me/5514991334579?text=Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata Ribeiro."; //
+export const metadata: Metadata = {
+  title: "Dra. Yasmin Prata Ribeiro | Médica de Família em Bauru",
+  description:
+    "Consulta médica em Bauru com a Dra. Yasmin Prata Ribeiro. Medicina de Família com acompanhamento integral e cuidado individualizado.",
+  alternates: { canonical: "https://dryasminprata.com.br" },
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // Função para scroll suave sem atualizar o hash (#) na URL
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80, // Compensação do header fixo
-        behavior: "smooth",
-      });
-      // Opcional: Atualiza a URL de forma "limpa" (ex: /sobre) se desejar via History API
-      // window.history.pushState(null, "", `/${id}`); 
-    }
-  };
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const GA_ID = process.env.NEXT_PUBLIC_GA4_ID;
+  const ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
+  const ADS_CONV_LABEL = process.env.NEXT_PUBLIC_ADS_WA_LABEL;
+
+  const WHATSAPP_PHONE = "5514991334579";
+  const WHATSAPP_MESSAGE =
+    "Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata.";
+
+  const waHref = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+    WHATSAPP_MESSAGE
+  )}`;
 
   return (
     <html lang="pt-BR" className="scroll-smooth">
       <body className="antialiased text-slate-800 bg-white">
-        
-        {/* ================= HEADER PREMIUM ================= */}
-        <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/80 backdrop-blur-md">
-          <div className="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
-            
-            {/* Brand / Logo */}
-            <a 
-              href="/" 
-              onClick={(e) => handleScroll(e, "topo")}
-              className="flex items-center gap-3 group"
-            >
-              <Image 
-                src="/images/logo/1.png" 
-                alt="Logo Dra. Yasmin" 
-                width={36} 
-                height={36} 
-                className="transition-transform group-hover:rotate-12" 
-              />
-              <div className="leading-tight hidden sm:block">
-                <p className="text-sm font-bold tracking-tight">Dra. Yasmin Prata</p>
-                <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium">Medicina de Família • Bauru</p>
-              </div>
-            </a>
 
-            {/* Navegação Limpa */}
-            <nav className="hidden lg:flex items-center gap-8">
-              {[
-                { name: "Sobre", id: "sobre" },
-                { name: "Serviços", id: "servicos" },
-                { name: "Como funciona", id: "como-funciona" },
-                { name: "FAQ", id: "faq" },
-                { name: "Contato", id: "contato" },
-              ].map((link) => (
-                <a
-                  key={link.id}
-                  href={`/${link.id}`}
-                  onClick={(e) => handleScroll(e, link.id)}
-                  className="text-xs uppercase tracking-[0.2em] font-bold text-slate-500 hover:text-[rgb(var(--brand))] transition-colors"
-                >
-                  {link.name}
-                </a>
-              ))}
-            </nav>
+        {/* ================= GA4 ================= */}
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${GA_ID}', { anonymize_ip: true });
+              `}
+            </Script>
+          </>
+        )}
 
-            {/* CTA Header */}
-            <div className="flex items-center gap-4">
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer"
-                className="hidden md:inline-flex items-center justify-center rounded-full bg-[rgb(var(--brand))] px-6 py-3 text-[11px] font-bold uppercase tracking-widest text-white transition-all hover:scale-105 hover:shadow-lg hover:shadow-[rgb(var(--brand)/0.2)]"
-              >
-                Agendar Consulta
-              </a>
-              {/* Menu Mobile Icon (Simplificado) */}
-              <button className="lg:hidden p-2 text-slate-500">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-              </button>
-            </div>
-          </div>
-        </header>
+        {/* ================= Google Ads ================= */}
+        {ADS_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ads-init" strategy="afterInteractive">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${ADS_ID}');
+              `}
+            </Script>
+          </>
+        )}
 
-        {/* MAIN CONTENT */}
+        {/* ================= Schema Médico (SEO Local Forte) ================= */}
+        <Script
+          id="schema-medico"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "Physician",
+            "name": "Dra. Yasmin Prata Ribeiro",
+            "medicalSpecialty": "Medicina de Família",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bauru",
+              "addressRegion": "SP",
+              "addressCountry": "BR"
+            },
+            "telephone": "+55 14 99133-4579",
+            "areaServed": "Bauru - SP"
+          }
+          `}
+        </Script>
+
+        {/* ================= Header ================= */}
+        <HeaderClient waHref={waHref} />
+
         <main id="topo">{children}</main>
 
-        {/* ================= FOOTER PREMIUM ================= */}
+        {/* ================= Footer ================= */}
         <footer className="bg-[#fcfaf9] border-t border-slate-200">
           <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-              
-              {/* Coluna 1: Sobre */}
-              <div className="space-y-6">
-                <Image src="/images/logo/3.png" alt="Dra. Yasmin Prata" width={180} height={50} className="opacity-90" />
-                <p className="text-sm text-slate-500 leading-relaxed font-light">
-                  Acompanhamento médico integral em Bauru, com foco na organização do cuidado e 
-                  continuidade terapêutica. Especialista pela USP Ribeirão Preto.
-                </p>
-              </div>
-
-              {/* Coluna 2: Links Rápidos */}
-              <div className="space-y-6">
-                <p className="text-xs uppercase tracking-[0.2em] font-bold text-slate-800">Navegação</p>
-                <nav className="flex flex-col gap-4">
-                  {["Sobre", "Serviços", "Como funciona", "Contato"].map((item) => (
-                    <a 
-                      key={item} 
-                      href={`/${item.toLowerCase()}`}
-                      onClick={(e) => handleScroll(e, item.toLowerCase())}
-                      className="text-sm text-slate-500 hover:text-[rgb(var(--brand))] transition-colors w-fit"
-                    >
-                      {item}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-
-              {/* Coluna 3: Atendimento */}
-              <div className="space-y-6">
-                <p className="text-xs uppercase tracking-[0.2em] font-bold text-slate-800">Atendimento</p>
-                <div className="space-y-4 text-sm text-slate-500 font-light">
-                  <p className="flex items-start gap-3">
-                    <span className="font-semibold text-slate-700">Local:</span>
-                    Bauru • SP
-                  </p>
-                  <p>Consultas presenciais com hora marcada para garantir sua privacidade.</p>
-                </div>
-              </div>
-
-              {/* Coluna 4: Contato Direto */}
-              <div className="space-y-6">
-                <p className="text-xs uppercase tracking-[0.2em] font-bold text-slate-800">Fale Conosco</p>
-                <div className="space-y-4">
-                  <a href={WHATSAPP_LINK} className="flex items-center gap-3 text-sm text-slate-500 hover:text-[rgb(var(--brand))] transition-colors">
-                    <span className="font-semibold text-slate-700">WhatsApp:</span> (14) 99133-4579
-                  </a>
-                  <p className="text-sm text-slate-500">
-                    <span className="font-semibold text-slate-700">E-mail:</span> contato@dryasminprata.com.br
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Linha Final / Copyright */}
             <div className="mt-20 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
               <div className="text-[10px] uppercase tracking-widest text-slate-400 font-medium text-center md:text-left">
-                <p>© {new Date().getFullYear()} Dra. Yasmin Prata Ribeiro • CRM/SP 000000</p>
+                <p>© {new Date().getFullYear()} Dra. Yasmin Prata Ribeiro</p>
                 <p className="mt-1 italic">A avaliação e conduta médica são individualizadas.</p>
               </div>
-              
               <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-slate-400">
                 <span>Desenvolvido por</span>
-                <a href="https://vibemed.com.br" target="_blank" className="font-bold text-slate-600 hover:text-[rgb(var(--brand))] transition-colors">
+                <a
+                  href="https://www.agenciavibemed.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="font-bold text-slate-600 hover:text-[rgb(var(--brand))] transition-colors"
+                >
                   Agência Vibemed
                 </a>
               </div>
             </div>
           </div>
         </footer>
+
+        {/* ================= Conversão WhatsApp ================= */}
+        <Script id="wa-conversion" strategy="afterInteractive">
+          {`
+            (function(){
+              document.addEventListener('click', function(e){
+                const target = e.target.closest('a[href^="https://wa.me/"]');
+                if(!target) return;
+
+                try {
+                  if (typeof gtag === 'function') {
+                    gtag('event', 'click_whatsapp', {
+                      event_category: 'engagement',
+                      event_label: 'whatsapp',
+                      value: 1
+                    });
+
+                    const adsId = '${ADS_ID || ""}';
+                    const label = '${ADS_CONV_LABEL || ""}';
+
+                    if (adsId && label) {
+                      gtag('event', 'conversion', {
+                        send_to: adsId + '/' + label
+                      });
+                    }
+                  }
+                } catch(e){}
+              });
+            })();
+          `}
+        </Script>
+
       </body>
     </html>
   );
