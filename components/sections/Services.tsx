@@ -35,12 +35,20 @@ const SERVICES = [
   },
 ];
 
+// Nomes e extensões validados conforme o seu print do Windows Explorer
+const CONVENIOS = [
+  { name: "SulAmérica", src: "/images/convenio/sulamerica.png" },
+  { name: "APAS", src: "/images/convenio/logoapas.jpg" },
+  { name: "Bradesco Saúde", src: "/images/convenio/bradescosaude.png" },
+  { name: "CASSI", src: "/images/convenio/logo-cassi.png" },
+];
+
 export default function Services() {
   return (
-    <section id="servicos" className="bg-[#fcfaf9] py-16 md:py-28">
+    <section id="servicos" className="bg-[#fcfaf9] py-16 md:py-28 font-sans">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Header da Seção */}
+        {/* ================= Header da Seção ================= */}
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between mb-12 md:mb-16">
           <div className="max-w-2xl">
             <div className="flex items-start gap-4">
@@ -60,7 +68,6 @@ export default function Services() {
             </div>
           </div>
 
-          {/* Filtros Visuais (Pílulas) */}
           <div className="flex flex-wrap gap-2">
             {["Consulta", "Rotina", "Crônicos", "Saúde mental"].map((t) => (
               <span
@@ -73,12 +80,10 @@ export default function Services() {
           </div>
         </div>
 
-        {/* Layout Principal: Foto + Cards */}
-        <div className="grid gap-10 lg:grid-cols-12 lg:items-start">
+        {/* ================= Layout Principal: Foto + Cards ================= */}
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-start mb-24 md:mb-32">
           
-          {/* Coluna da Foto (Mobile: Wide / Desktop: Vertical) */}
           <div className="lg:col-span-5 relative group">
-            {/* Efeito de Profundidade */}
             <div className="absolute -inset-4 bg-[rgb(var(--brand)/0.03)] rounded-[50px] blur-2xl transition-opacity group-hover:opacity-100 opacity-0" />
             
             <div className="relative overflow-hidden rounded-[35px] md:rounded-[50px] bg-white shadow-xl shadow-slate-200/50">
@@ -87,13 +92,13 @@ export default function Services() {
                   src={DOCTOR_IMAGE}
                   alt="Dra. Yasmin Prata Ribeiro"
                   fill
+                  priority
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(min-width: 1024px) 40vw, 100vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent opacity-60" />
               </div>
 
-              {/* Legenda Integrada */}
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
                 <p className="text-lg font-medium">Dra. Yasmin Prata Ribeiro</p>
                 <p className="text-xs opacity-80 font-light tracking-wide uppercase">Medicina de Família • Bauru</p>
@@ -101,7 +106,6 @@ export default function Services() {
             </div>
           </div>
 
-          {/* Coluna dos Cards de Serviço */}
           <div className="lg:col-span-7">
             <div className="grid gap-4 sm:grid-cols-2">
               {SERVICES.map((item) => (
@@ -143,8 +147,43 @@ export default function Services() {
               </p>
             </div>
           </div>
-
         </div>
+
+        {/* ================= Nova Subseção: Convênios para Reembolso ================= */}
+        <div className="border-t border-slate-200 pt-16">
+          <div className="text-center mb-12">
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.4em] text-slate-400 mb-3">
+              Documentação para Reembolso
+            </h3>
+            <p className="text-slate-500 font-light text-sm md:text-base">
+              Emitimos nota fiscal detalhada para facilitar seu reembolso nos principais planos e associações:
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-20">
+            {CONVENIOS.map((logo) => (
+              <div 
+                key={logo.name} 
+                className="relative w-24 h-10 md:w-32 md:h-14 transition-all duration-500 group"
+              >
+                <Image
+                  src={logo.src}
+                  alt={`Logo convênio ${logo.name}`}
+                  fill
+                  className="object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500 mix-blend-multiply"
+                  sizes="150px"
+                />
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-16 flex flex-col items-center gap-4">
+            <p className="text-[10px] uppercase tracking-widest text-slate-400 font-medium border-t border-slate-100 pt-8 w-full text-center">
+              Atendimento Particular • Bauru/SP
+            </p>
+          </div>
+        </div>
+
       </div>
     </section>
   );

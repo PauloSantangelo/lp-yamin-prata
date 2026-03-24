@@ -1,15 +1,3 @@
-/*
-  Clinic Section — A Clínica (mais respiro + animação ao rolar)
-  ✅ Mais espaços em branco (layout mais premium)
-  ✅ Cards com mais “air” e padding
-  ✅ Efeito de entrada on-scroll (IntersectionObserver, leve e sem libs)
-  ✅ Respeita prefers-reduced-motion (acessibilidade)
-  ✅ Sem impacto relevante em performance
-
-  Pastas:
-  - Fotos: /public/images/clinica/clinica1.webp … clinica4.webp
-*/
-
 "use client";
 
 import Image from "next/image";
@@ -74,7 +62,6 @@ export default function Clinic() {
       className="relative bg-[rgb(var(--bg))]"
       aria-labelledby="clinica-title"
     >
-      {/* Espaço extra entre seções (mais premium) */}
       <div className="lp-container py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:items-start lg:gap-16">
           {/* ================= Texto ================= */}
@@ -92,25 +79,30 @@ export default function Clinic() {
             </h2>
 
             <p className="mt-4 max-w-xl text-[rgb(var(--muted))] leading-relaxed">
-              Um espaço pensado para oferecer privacidade, conforto e atenção
-              médica qualificada — favorecendo consultas com escuta, tempo e
-              critério clínico.
+              As consultas são realizadas no <strong>Espaço Saúde - Rede OneCare</strong>, 
+              um ambiente projetado para oferecer o que há de mais moderno em infraestrutura, 
+              aliando privacidade e conforto para um atendimento médico de excelência.
             </p>
 
             {/* Cards com mais respiro */}
             <div className="mt-10 grid gap-5">
               {[
                 {
+                  title: "Espaço Saúde - Rede OneCare",
+                  desc: "Infraestrutura premium e localização privilegiada, garantindo segurança e bem-estar desde a sua chegada.",
+                  highlight: true
+                },
+                {
                   title: "Ambiente",
-                  desc: "Consultórios reservados, climatizados e organizados para favorecer um atendimento calmo e focado.",
+                  desc: "Consultórios modernos, climatizados e organizados para favorecer uma escuta atenta e um diagnóstico preciso.",
                 },
                 {
                   title: "Atendimento",
-                  desc: "Consultas sem pressa, com avaliação completa, organização de informações e acompanhamento longitudinal.",
+                  desc: "Foco no cuidado individualizado, com tempo dedicado para entender seu histórico e planejar seu acompanhamento.",
                 },
                 {
                   title: "Conduta médica",
-                  desc: "Decisões baseadas em evidências, bom senso clínico e respeito às necessidades individuais.",
+                  desc: "Prática baseada em evidências científicas atualizadas, com ética, transparência e respeito à sua autonomia.",
                 },
               ].map((item, idx) => (
                 <div
@@ -121,6 +113,7 @@ export default function Clinic() {
                     isInView
                       ? "opacity-100 translate-y-0"
                       : "opacity-0 translate-y-3",
+                    item.highlight ? "border-[rgb(var(--brand)/0.3)] ring-1 ring-[rgb(var(--brand)/0.1)]" : ""
                   ].join(" ")}
                   style={{ transitionDelay: `${120 + idx * 90}ms` }}
                 >
@@ -130,7 +123,7 @@ export default function Clinic() {
                       className="h-2.5 w-2.5 rounded-full"
                       style={{ background: "rgb(var(--brand))" }}
                     />
-                    <p className="text-sm font-semibold text-[rgb(var(--fg))]">
+                    <p className={`text-sm font-semibold ${item.highlight ? "text-[rgb(var(--brand))]" : "text-[rgb(var(--fg))]"}`}>
                       {item.title}
                     </p>
                   </div>
@@ -152,7 +145,6 @@ export default function Clinic() {
             style={{ transitionDelay: "140ms" }}
           >
             <div className="overflow-hidden rounded-3xl border bg-[rgb(var(--surface))] shadow-[var(--shadow)]">
-              {/* Grid de imagens — com mais “moldura” */}
               <div className="p-3 md:p-4">
                 <div className="grid grid-cols-2 gap-2 md:gap-3">
                   {CLINIC_IMAGES.map((src, index) => (
@@ -163,12 +155,11 @@ export default function Clinic() {
                       <div className="relative aspect-[4/3] w-full">
                         <Image
                           src={src}
-                          alt={`Clínica — ambiente ${index + 1}`}
+                          alt={`Espaço Saúde Rede OneCare — ambiente ${index + 1}`}
                           fill
                           sizes="(min-width: 768px) 50vw, 100vw"
                           className="object-cover"
                         />
-                        {/* overlay delicado para “uniformizar” as fotos */}
                         <div
                           aria-hidden="true"
                           className="absolute inset-0"
@@ -183,10 +174,9 @@ export default function Clinic() {
                 </div>
               </div>
 
-              {/* Rodapé mais “luxo”, com respiro */}
               <div className="flex items-center justify-between border-t px-6 py-5">
                 <p className="text-sm text-[rgb(var(--muted))]">
-                  Clínica médica em Bauru voltada ao cuidado integral e contínuo.
+                  Localizado no Espaço Saúde - Rede OneCare, Bauru/SP.
                 </p>
                 <span
                   aria-hidden="true"
@@ -196,7 +186,6 @@ export default function Clinic() {
               </div>
             </div>
 
-            {/* detalhe decorativo sutil (mais afastado) */}
             <div
               aria-hidden="true"
               className="pointer-events-none absolute -bottom-10 -right-10 hidden h-32 w-32 rounded-full md:block"

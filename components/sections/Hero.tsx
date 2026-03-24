@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { MessageCircle } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LOGO = "/images/logo/3.png";
 const HERO_IMAGE = "/images/yasmin/yasmin4.webp";
-const CRM = "CRM/SP 000000";
+// Atualizado com os dados corretos
+const CRM_RQE = "CRM-SP: 178037 | RQE: 79913";
 
 /**
  * Hook para gerenciar animações de entrada baseadas no scroll
@@ -44,23 +45,23 @@ export default function Hero() {
     >
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* 1. Logo Mobile (Aumentado e com Efeito de Entrada) */}
+        {/* 1. Logo Mobile */}
         <div className={`flex justify-start mb-12 lg:hidden transition-all duration-1000 ease-out ${
           isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
         }`}>
           <Image
             src={LOGO}
             alt="Dra. Yasmin Prata"
-            width={320} // Tamanho maior para mobile
+            width={320}
             height={80}
-            className="w-auto h-16 object-contain opacity-95" // h-16 para maior presença
+            className="w-auto h-16 object-contain opacity-95"
             priority
           />
         </div>
 
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           
-          {/* 2. Coluna da Imagem (Segunda no Mobile, Direita no Desktop) */}
+          {/* 2. Coluna da Imagem */}
           <div className={`lg:col-span-5 order-2 lg:order-2 transition-all duration-1000 delay-300 ease-out ${
             isInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}>
@@ -85,13 +86,13 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* 3. Coluna de Texto (Terceira no Mobile, Esquerda no Desktop) */}
+          {/* 3. Coluna de Texto */}
           <div className={`lg:col-span-7 order-3 lg:order-1 transition-all duration-1000 delay-500 ease-out ${
             isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
           }`}>
             <div className="flex flex-col items-start gap-10">
               
-              {/* Logo Desktop (Oculto no mobile) */}
+              {/* Logo Desktop */}
               <div className="hidden lg:block">
                 <Image
                   src={LOGO}
@@ -135,14 +136,18 @@ export default function Hero() {
                 </a>
               </div>
 
-              {/* Rodapé Hero */}
-              <div className="w-full pt-10 flex items-center gap-5 border-t border-slate-200/60 mt-6">
+              {/* Rodapé Hero com CRM e RQE atualizados */}
+              <div className="w-full pt-10 flex flex-wrap items-center gap-5 border-t border-slate-200/60 mt-6">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[rgb(var(--brand))]" />
-                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">{CRM}</span>
+                  <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                    {CRM_RQE}
+                  </span>
                 </div>
-                <div className="h-5 w-px bg-slate-200" />
-                <span className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium italic">USP Ribeirão Preto</span>
+                <div className="h-5 w-px bg-slate-200 hidden sm:block" />
+                <span className="text-[11px] text-slate-400 uppercase tracking-[0.2em] font-medium italic">
+                  USP Ribeirão Preto
+                </span>
               </div>
 
             </div>

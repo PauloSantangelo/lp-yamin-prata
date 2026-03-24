@@ -1,6 +1,7 @@
-"use client"; // Adicionado para evitar erro de componentes que usam estado no Next.js
+"use client";
 
 import { useState } from "react";
+import { MessageCircle, ChevronDown, Calendar, UserCheck, HeartPulse, MapPin } from "lucide-react";
 
 const WHATSAPP_PHONE = "5514991334579";
 const WHATSAPP_MESSAGE = "Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata.";
@@ -8,73 +9,104 @@ const WHATSAPP_MESSAGE = "Olá, gostaria de agendar uma consulta com a Dra. Yasm
 const STEPS = [
   {
     title: "Agendamento",
-    desc: "O primeiro contato é feito via WhatsApp, onde nossa equipe organiza o melhor horário para sua consulta presencial em Bauru.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-    ),
+    desc: "O contato inicial é feito via WhatsApp. Nossa equipe organiza sua consulta no Espaço Saúde - Rede OneCare, em Bauru, com total conveniência.",
+    icon: <Calendar className="w-6 h-6" />,
   },
   {
     title: "Consulta Individualizada",
-    desc: "Um momento de escuta atenta, sem pressa, focado na sua história e na organização do seu cuidado médico integral.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    ),
+    desc: "Um momento de escuta atenta e sem pressa. Avaliamos sua história de vida, exames e todas as medicações em uso para um diagnóstico integral.",
+    icon: <UserCheck className="w-6 h-6" />,
   },
   {
     title: "Plano de Cuidado",
-    desc: "Definimos juntos as condutas, exames e o acompanhamento contínuo necessário para manter sua saúde em equilíbrio.",
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-    ),
+    desc: "Definimos juntos as metas de saúde, ajustes de tratamentos e o acompanhamento contínuo para manter seu bem-estar em equilíbrio.",
+    icon: <HeartPulse className="w-6 h-6" />,
   },
 ];
 
 const FAQS = [
   {
-    q: "A Dra. atende convênios médicos?",
-    a: "Os atendimentos são estritamente particulares para garantir o tempo e a qualidade que um cuidado integral exige. Fornecemos recibo detalhado para que você possa solicitar o reembolso junto ao seu plano de saúde.",
+    q: "Qual a principal área de atuação da Dra. Yasmin Prata?",
+    a: "Dra. Yasmin é Médica de Família com foco no cuidado de adultos e idosos. Possui expertise no manejo de diabetes, saúde na pós-menopausa e, especialmente, em casos complexos com múltiplas doenças (multimorbidades) e polifarmácia — garantindo que o uso de vários medicamentos seja seguro e coordenado.",
   },
   {
-    q: "Onde o consultório está localizado?",
-    a: "Nosso espaço de atendimento presencial está localizado em Bauru/SP, estruturado para oferecer conforto e sigilo durante sua avaliação.",
+    q: "Onde o consultório está localizado em Bauru?",
+    a: "Os atendimentos presenciais ocorrem na OneCare Espaço e Saúde, na Rua Ruy Mendes de Rosis, 1-125 (Jardim Infante Dom Henrique). Como referência, estamos localizados logo ao lado do estacionamento do Bauru Shopping.",
   },
   {
-    q: "A consulta é apenas para adultos?",
-    a: "Como Médica de Família, a Dra. Yasmin possui formação para acompanhar pessoas em todas as fases da vida, desde a infância até a terceira idade, com foco em prevenção e rotina.",
+    q: "A clínica possui acessibilidade e estacionamento?",
+    a: "Sim. A OneCare oferece estacionamento privativo no local e elevadores modernos, garantindo acessibilidade total e conforto para pacientes idosos ou com mobilidade reduzida.",
   },
   {
-    q: "É possível realizar teleconsulta?",
-    a: "A primeira avaliação é preferencialmente presencial para um exame clínico detalhado. Consultas de retorno ou acompanhamentos específicos podem ser realizados via telemedicina, conforme a necessidade clínica.",
+    q: "A Dra. atende Sul América, Bradesco Saúde, Cassi ou APAES?",
+    a: "Os atendimentos são particulares para garantir o tempo e o rigor técnico que casos complexos exigem. No entanto, emitimos nota fiscal e toda a documentação necessária para que pacientes da Sul América, Bradesco Saúde, Cassi e APAES solicitem o reembolso junto aos seus planos.",
+  },
+  {
+    q: "Qual a diferença entre Médico de Família e um Clínico Geral?",
+    a: "O Médico de Família (MFC) passa por uma residência específica para cuidar da pessoa ao longo da vida. Diferente de um clínico geral, a Dra. Yasmin foca na prevenção personalizada e na coordenação de todos os seus tratamentos médicos de forma unificada.",
+  },
+  {
+    q: "Como funciona o tratamento para Diabetes e Menopausa?",
+    a: "O foco é o equilíbrio metabólico e hormonal. Realizamos o acompanhamento do diabetes tipo 2 e resistência insulínica, além do manejo dos sintomas da pós-menopausa, sempre priorizando a saúde cardiovascular.",
+  },
+  {
+    q: "É possível realizar consultas por Telemedicina?",
+    a: "Sim. Embora a primeira avaliação seja preferencialmente presencial para um exame físico completo em Bauru, consultas de retorno ou monitoramento de pacientes crônicos podem ser realizadas via telemedicina com total segurança.",
   },
 ];
 
 export default function ProcessAndFAQ() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const waHref = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
+  // Toggle exclusivo: se já estiver aberto, fecha. Se não, abre o novo e fecha o anterior.
+  const toggleFAQ = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  // Schema.org JSON-LD para SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": FAQS.map((item) => ({
+      "@type": "Question",
+      "name": item.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.a,
+      },
+    })),
+  };
+
   return (
-    <section className="bg-[#fcfaf9] py-20 md:py-32">
+    <section className="bg-[#fcfaf9] py-20 md:py-32 font-sans">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* ================= COMO FUNCIONA ================= */}
-        <div id="como-funciona" className="mb-24 md:mb-32">
+        {/* ================= SEÇÃO: COMO FUNCIONA ================= */}
+        <div id="como-funciona" className="mb-24 md:mb-40">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <span className="text-[11px] uppercase tracking-[0.3em] font-bold text-[rgb(var(--brand))] opacity-80">Passo a Passo</span>
+            <span className="text-[11px] uppercase tracking-[0.3em] font-bold text-[rgb(var(--brand))] opacity-80">A Jornada do Paciente</span>
             <h2 className="mt-4 text-3xl md:text-5xl font-light text-slate-800 leading-tight">
-              Como funciona a <span className="font-serif italic text-[rgb(var(--brand))]">sua consulta</span>
+              Um cuidado planejado <br/>
+              <span className="font-serif italic text-[rgb(var(--brand))]">para você.</span>
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 relative">
-            {/* Linha conectora otimizada com h-px */}
-            <div className="hidden md:block absolute top-12 left-0 w-full h-px bg-slate-200 z-0" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-16 relative">
+            <div className="hidden md:block absolute top-10 left-0 w-full h-px bg-slate-200 z-0" />
             
             {STEPS.map((step, idx) => (
               <div key={idx} className="relative z-10 flex flex-col items-center text-center group">
-                <div className="w-24 h-24 rounded-full bg-white border border-slate-100 shadow-xl flex items-center justify-center text-[rgb(var(--brand))] mb-8 transition-transform group-hover:scale-110 duration-500">
+                <div className="w-20 h-20 rounded-full bg-white border border-slate-100 shadow-xl flex items-center justify-center text-[rgb(var(--brand))] mb-8 transition-all group-hover:bg-[rgb(var(--brand))] group-hover:text-white duration-500">
                   {step.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-slate-800 mb-4">{step.title}</h3>
-                <p className="text-slate-500 font-light leading-relaxed text-sm md:text-base">
+                <p className="text-slate-500 font-light leading-relaxed text-sm md:text-base px-4">
                   {step.desc}
                 </p>
               </div>
@@ -82,46 +114,60 @@ export default function ProcessAndFAQ() {
           </div>
         </div>
 
-        {/* ================= FAQ ================= */}
+        {/* ================= SEÇÃO: FAQ ================= */}
         <div id="faq" className="grid lg:grid-cols-12 gap-16 items-start">
-          <div className="lg:col-span-5 text-left">
-            <h2 className="text-3xl md:text-4xl font-light text-slate-800 leading-tight">
+          <div className="lg:col-span-5 text-left sticky top-32">
+            <span className="text-[11px] uppercase tracking-[0.3em] font-bold text-[rgb(var(--brand))] opacity-80">Dúvidas</span>
+            <h2 className="mt-4 text-3xl md:text-4xl font-light text-slate-800 leading-tight">
               Dúvidas <br />
               <span className="font-serif italic text-[rgb(var(--brand))]">frequentes</span>
             </h2>
-            <p className="mt-6 text-slate-500 font-light leading-relaxed">
-              Caso sua dúvida não esteja listada aqui, nossa equipe está pronta para 
-              ajudar você através do atendimento no WhatsApp.
+            <p className="mt-6 text-slate-500 font-light leading-relaxed max-w-sm">
+              Encontre respostas sobre atendimentos, localização e a especialidade da Dra. Yasmin Prata em Bauru.
             </p>
             <div className="mt-10">
               <a
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[rgb(var(--brand))] font-bold text-sm uppercase tracking-widest border-b-2 border-[rgb(var(--brand)/0.2)] pb-2 hover:border-[rgb(var(--brand))] transition-all"
+                className="inline-flex items-center gap-3 text-[rgb(var(--brand))] font-bold text-sm uppercase tracking-widest group"
               >
-                Falar com a equipe →
+                <span className="border-b-2 border-[rgb(var(--brand)/0.2)] pb-1 group-hover:border-[rgb(var(--brand))] transition-all">
+                  Falar no WhatsApp
+                </span>
+                <MessageCircle className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </a>
             </div>
           </div>
 
           <div className="lg:col-span-7 space-y-4">
-            {FAQS.map((item, idx) => (
-              <details 
-                key={idx} 
-                className="group rounded-3xl border border-white bg-white/60 backdrop-blur-sm p-6 shadow-sm transition-all open:shadow-xl open:shadow-slate-200/50"
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between font-semibold text-slate-800 group-open:text-[rgb(var(--brand))]">
-                  <span className="text-sm md:text-base">{item.q}</span>
-                  <span className="transition-transform group-open:rotate-180 opacity-50">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-                  </span>
-                </summary>
-                <div className="mt-4 text-sm md:text-base text-slate-500 font-light leading-relaxed border-t border-slate-100 pt-4">
-                  {item.a}
+            {FAQS.map((item, idx) => {
+              const isOpen = activeIndex === idx;
+              return (
+                <div 
+                  key={idx} 
+                  className={`rounded-3xl border border-white bg-white/60 backdrop-blur-sm shadow-sm transition-all duration-300 ${isOpen ? 'shadow-xl shadow-slate-200/50' : ''}`}
+                >
+                  <button
+                    onClick={() => toggleFAQ(idx)}
+                    className="flex w-full cursor-pointer items-center justify-between p-6 text-left focus:outline-none"
+                  >
+                    <span className={`text-sm md:text-base font-semibold transition-colors duration-300 ${isOpen ? 'text-[rgb(var(--brand))]' : 'text-slate-700'}`}>
+                      {item.q}
+                    </span>
+                    <ChevronDown className={`w-5 h-5 transition-transform duration-300 opacity-40 ${isOpen ? 'rotate-180 text-[rgb(var(--brand))] opacity-100' : ''}`} />
+                  </button>
+                  
+                  <div 
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                  >
+                    <div className="p-6 pt-0 text-sm md:text-base text-slate-500 font-light leading-relaxed border-t border-slate-100/50 mt-2">
+                      {item.a}
+                    </div>
+                  </div>
                 </div>
-              </details>
-            ))}
+              );
+            })}
           </div>
         </div>
 
