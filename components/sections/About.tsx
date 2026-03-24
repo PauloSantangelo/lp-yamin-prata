@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { MessageCircle, GraduationCap, MapPin, HeartPulse, ShieldCheck, FileCheck } from "lucide-react";
+import { MessageCircle, GraduationCap, MapPin, HeartPulse, ShieldCheck, FileCheck, BookOpen } from "lucide-react";
 
 const DESKTOP_IMAGES = [
   "/images/yasmin/yasmin3.webp",
@@ -44,7 +44,6 @@ export default function About() {
           
           {/* ================= Coluna Visual ================= */}
           <div className="relative group">
-            {/* Desktop: Duas fotos lado a lado com profundidade */}
             <div className="hidden md:grid grid-cols-2 gap-6">
               {DESKTOP_IMAGES.map((src, idx) => (
                 <div
@@ -66,7 +65,6 @@ export default function About() {
               ))}
             </div>
 
-            {/* Mobile: Slideshow elegante */}
             <div className="md:hidden relative aspect-[4/5] overflow-hidden rounded-[35px] shadow-xl">
               {MOBILE_IMAGES.map((src, i) => (
                 <Image
@@ -90,7 +88,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Badge Editorial de Experiência */}
             <div className="absolute -bottom-10 -right-4 md:right-4 bg-white p-6 rounded-[30px] shadow-xl border border-slate-100 z-20 max-w-[200px] hidden sm:block text-center">
               <span className="text-3xl font-serif italic text-[rgb(var(--brand))] leading-none">12+ anos</span>
               <span className="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">De prática clínica</span>
@@ -111,13 +108,13 @@ export default function About() {
             <div className="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
               <p>
                 A Dra. Yasmin Prata Ribeiro é Médica de Família com formação e especialização pela <strong>USP Ribeirão Preto</strong>. 
-                Sua atuação é focada no acompanhamento de adultos e idosos, unindo o rigor técnico à sensibilidade necessária para tratar casos de alta complexidade.
+                Sua trajetória une o rigor técnico à experiência acadêmica, atuando também como <strong>docente na graduação e na residência médica</strong> do curso de medicina.
               </p>
               <p>
-                Com vasta experiência em <strong>multimorbidades</strong> e <strong>polifarmácia</strong>, ela se destaca pela capacidade de organizar o cuidado de pacientes que utilizam múltiplos medicamentos, garantindo segurança e equilíbrio terapêutico.
+                Com vasta experiência em <strong>multimorbidades</strong> e <strong>polifarmácia</strong>, ela se destaca pela capacidade de organizar o cuidado de pacientes que utilizam múltiplos medicamentos, garantindo segurança e equilíbrio terapêutico em casos de alta complexidade.
               </p>
               <p>
-                Acredita em uma medicina integral, onde o controle de doenças crônicas como diabetes e hipertensão, o manejo da saúde na pós-menopausa e o cuidado com a saúde mental são partes de uma mesma história: a sua.
+                Acredita em uma medicina integral, onde o controle de doenças crônicas, o manejo da saúde na pós-menopausa e o cuidado com a saúde mental são fundamentais para a qualidade de vida em todas as fases da idade adulta.
               </p>
             </div>
 
@@ -125,9 +122,9 @@ export default function About() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 w-full">
               {[
                 { icon: <GraduationCap className="w-5 h-5" />, label: "Especialista USP-RP" },
+                { icon: <BookOpen className="w-5 h-5" />, label: "Docente em Medicina" },
                 { icon: <FileCheck className="w-5 h-5" />, label: CRM_RQE },
                 { icon: <HeartPulse className="w-5 h-5" />, label: "Foco em Casos Complexos" },
-                { icon: <ShieldCheck className="w-5 h-5" />, label: "Segurança na Polifarmácia" },
                 { icon: <MapPin className="w-5 h-5" />, label: "OneCare Espaço e Saúde" },
                 { icon: <MessageCircle className="w-5 h-5" />, label: "Atendimento Humanizado" },
               ].map((item, i) => (
