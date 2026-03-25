@@ -28,7 +28,7 @@ export default function Contact() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide">OneCare Espaço e Saúde</p>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide">Espaço Saúde - Rede OneCare</p>
                   <div className="mt-1 text-xs text-slate-500 leading-relaxed">
                     <p>R. Ruy Mendes de Rosis, 1-125 - Jd. Infante Dom Henrique</p>
                     <p className="mt-1 text-[rgb(var(--brand))] font-medium">
@@ -76,7 +76,7 @@ export default function Contact() {
           <div className="lg:col-span-7">
             <div className="h-full min-h-[450px] w-full relative rounded-[40px] md:rounded-[60px] overflow-hidden shadow-2xl border-8 border-[#fcfaf9]">
               <iframe
-                title="Localização OneCare Espaço e Saúde Bauru"
+                title="Localização Espaço Saúde - Rede One Care"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: "grayscale(0.1) contrast(1.05)" }}

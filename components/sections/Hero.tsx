@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 const LOGO = "/images/logo/3.png";
 const HERO_IMAGE = "/images/yasmin/yasmin4.webp";
-// Atualizado com os dados corretos
+// Dados de registro profissional
 const CRM_RQE = "CRM-SP: 178037 | RQE: 79913";
 
 /**
@@ -41,17 +41,17 @@ export default function Hero() {
   return (
     <section 
       ref={ref}
-      className="relative overflow-hidden bg-[#fcfaf9] pt-12 pb-20 md:py-32"
+      className="relative overflow-hidden bg-[#fcfaf9] pt-12 pb-20 md:py-32 font-sans"
     >
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* 1. Logo Mobile */}
+        {/* 1. Logo Mobile (Entrada suave) */}
         <div className={`flex justify-start mb-12 lg:hidden transition-all duration-1000 ease-out ${
           isInView ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
         }`}>
           <Image
             src={LOGO}
-            alt="Dra. Yasmin Prata"
+            alt="Dra. Yasmin Prata Ribeiro"
             width={320}
             height={80}
             className="w-auto h-16 object-contain opacity-95"
@@ -61,7 +61,7 @@ export default function Hero() {
 
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           
-          {/* 2. Coluna da Imagem */}
+          {/* 2. Coluna da Imagem (Direita no Desktop) */}
           <div className={`lg:col-span-5 order-2 lg:order-2 transition-all duration-1000 delay-300 ease-out ${
             isInView ? "opacity-100 scale-100" : "opacity-0 scale-95"
           }`}>
@@ -86,7 +86,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* 3. Coluna de Texto */}
+          {/* 3. Coluna de Texto (Esquerda no Desktop) */}
           <div className={`lg:col-span-7 order-3 lg:order-1 transition-all duration-1000 delay-500 ease-out ${
             isInView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-6"
           }`}>
@@ -96,7 +96,7 @@ export default function Hero() {
               <div className="hidden lg:block">
                 <Image
                   src={LOGO}
-                  alt="Dra. Yasmin Prata"
+                  alt="Dra. Yasmin Prata Ribeiro"
                   width={260}
                   height={70}
                   className="w-auto h-16 object-contain opacity-95"
@@ -112,20 +112,21 @@ export default function Hero() {
 
                 <h1 className="text-4xl md:text-6xl font-light text-slate-800 leading-[1.1] tracking-tight">
                   Cuidado médico focado na <br className="hidden lg:block" />
-                  <span className="font-serif italic text-[rgb(var(--brand))]">sua história.</span>
+                  <span className="font-serif italic text-[rgb(var(--brand))] text-5xl md:text-7xl">sua história.</span>
                 </h1>
 
+                {/* Texto atualizado conforme solicitação da Dra. Yasmin */}
                 <p className="max-w-lg text-lg md:text-xl text-slate-500 font-light leading-relaxed">
-                  Dra. Yasmin Prata: Especialista pela USP focada no acompanhamento 
+                  <strong>Dra. Yasmin Prata Ribeiro: Médica especialista pela USP</strong> focada no acompanhamento 
                   contínuo e na organização do seu cuidado médico integral.
                 </p>
               </div>
 
-              {/* Ações */}
+              {/* Botões de Ação */}
               <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto pt-4">
                 <a
                   href="#contato"
-                  className="group inline-flex w-full sm:w-auto items-center justify-center gap-4 rounded-full bg-[rgb(var(--brand))] px-12 py-6 text-sm font-bold text-white transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-[rgb(var(--brand)/0.3)] active:scale-95"
+                  className="group inline-flex w-full sm:w-auto items-center justify-center gap-4 rounded-full bg-[rgb(var(--brand))] px-12 py-6 text-sm font-bold text-white transition-all hover:scale-[1.03] hover:shadow-2xl hover:shadow-[rgb(var(--brand)/0.3)] active:scale-95 shadow-lg shadow-[rgb(var(--brand)/0.15)]"
                 >
                   <MessageCircle className="w-5 h-5 transition-transform group-hover:rotate-12" />
                   <span>Agendar Consulta</span>
@@ -136,7 +137,7 @@ export default function Hero() {
                 </a>
               </div>
 
-              {/* Rodapé Hero com CRM e RQE atualizados */}
+              {/* Rodapé Hero com CRM e RQE */}
               <div className="w-full pt-10 flex flex-wrap items-center gap-5 border-t border-slate-200/60 mt-6">
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[rgb(var(--brand))]" />

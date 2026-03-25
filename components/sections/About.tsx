@@ -38,39 +38,43 @@ export default function About() {
   }, []);
 
   return (
-    <section id="sobre" className="bg-[#fcfaf9] py-20 md:py-32 overflow-hidden">
+    <section id="sobre" className="bg-[#fcfaf9] py-16 md:py-28 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid gap-16 lg:grid-cols-2 items-start">
+        <div className="grid gap-12 lg:grid-cols-2 items-center">
           
           {/* ================= Coluna Visual ================= */}
-          <div className="relative group">
+          {/* Mobile: Ordem 1 (Aparece primeiro) | Desktop: Ordem 2 (Vai para a direita) */}
+          <div className="relative group order-1 lg:order-2">
+            {/* Desktop Grid */}
             <div className="hidden md:grid grid-cols-2 gap-6">
               {DESKTOP_IMAGES.map((src, idx) => (
                 <div
                   key={src}
-                  className={`relative overflow-hidden rounded-[40px] shadow-2xl transition-transform duration-700 hover:scale-[1.02] ${
+                  className={`relative overflow-hidden rounded-[40px] shadow-2xl transition-all duration-700 hover:scale-[1.03] ${
                     idx === 1 ? "mt-12" : "" 
                   }`}
                 >
-                  <div className="relative aspect-[4/5] w-full bg-slate-200">
+                  <div className="relative aspect-[3/4] w-full bg-slate-200">
                     <Image
                       src={src}
-                      alt="Dra. Yasmin Prata"
+                      alt="Dra. Yasmin Prata Ribeiro"
                       fill
                       className="object-cover"
-                      sizes="25vw"
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      priority={idx === 0}
                     />
                   </div>
                 </div>
               ))}
             </div>
 
+            {/* Mobile: Slideshow */}
             <div className="md:hidden relative aspect-[4/5] overflow-hidden rounded-[35px] shadow-xl">
               {MOBILE_IMAGES.map((src, i) => (
                 <Image
                   key={src}
                   src={src}
-                  alt="Dra. Yasmin Prata"
+                  alt="Dra. Yasmin Prata Ribeiro"
                   fill
                   className={`absolute inset-0 object-cover transition-opacity duration-1000 ${
                     i === active ? "opacity-100" : "opacity-0"
@@ -88,68 +92,74 @@ export default function About() {
               </div>
             </div>
 
-            <div className="absolute -bottom-10 -right-4 md:right-4 bg-white p-6 rounded-[30px] shadow-xl border border-slate-100 z-20 max-w-[200px] hidden sm:block text-center">
-              <span className="text-3xl font-serif italic text-[rgb(var(--brand))] leading-none">12+ anos</span>
-              <span className="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">De prática clínica</span>
+            {/* Badge de Experiência */}
+            <div className="absolute -bottom-6 -right-2 md:right-6 bg-white p-5 rounded-[28px] shadow-2xl border border-slate-50 z-20 max-w-[170px] hidden sm:block text-center">
+              <span className="text-2xl font-serif italic text-[rgb(var(--brand))] leading-none">12+ anos</span>
+              <span className="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">Prática Clínica</span>
             </div>
           </div>
 
           {/* ================= Coluna Conteúdo ================= */}
-          <div className="flex flex-col items-start pt-4 lg:pt-8">
-            <span className="text-[11px] uppercase tracking-[0.3em] font-bold text-[rgb(var(--brand))] mb-4 opacity-80">
+          {/* Mobile: Ordem 2 (Fica abaixo da imagem) | Desktop: Ordem 1 (Vai para a esquerda) */}
+          <div className="flex flex-col items-start order-2 lg:order-1">
+            <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-[rgb(var(--brand))] mb-4 opacity-70">
               Trajetória e Especialidade
             </span>
             
-            <h2 className="text-4xl md:text-5xl font-light text-slate-800 leading-tight tracking-tight mb-8">
+            <h2 className="text-3xl md:text-4xl font-light text-slate-800 leading-[1.15] tracking-tight mb-8">
               Sobre a <br />
-              <span className="font-serif italic text-[rgb(var(--brand))] text-5xl md:text-6xl">Dra. Yasmin Prata</span>
+              <span className="font-serif italic text-[rgb(var(--brand))] text-4xl md:text-5xl block mt-1">
+                Dra. Yasmin Prata Ribeiro
+              </span>
             </h2>
 
-            <div className="space-y-6 text-slate-600 font-light leading-relaxed text-lg">
+            <div className="space-y-5 text-slate-600 font-light leading-relaxed text-base lg:text-[1.05rem]">
               <p>
-                A Dra. Yasmin Prata Ribeiro é Médica de Família com formação e especialização pela <strong>USP Ribeirão Preto</strong>. 
-                Sua trajetória une o rigor técnico à experiência acadêmica, atuando também como <strong>docente na graduação e na residência médica</strong> do curso de medicina.
+                A Dra. Yasmin Prata Ribeiro é Médica de Família com <strong>especialização (residência médica) pelo Hospital das Clínicas da USP Ribeirão Preto</strong>. Sua conduta médica une o rigor técnico à experiência acadêmica.
               </p>
               <p>
-                Com vasta experiência em <strong>multimorbidades</strong> e <strong>polifarmácia</strong>, ela se destaca pela capacidade de organizar o cuidado de pacientes que utilizam múltiplos medicamentos, garantindo segurança e equilíbrio terapêutico em casos de alta complexidade.
+                Atua também como <strong>professora e supervisora do Curso de Medicina da UNINOVE Bauru</strong>, mantendo-se em constante atualização com as melhores práticas científicas e diretrizes internacionais.
               </p>
               <p>
-                Acredita em uma medicina integral, onde o controle de doenças crônicas, o manejo da saúde na pós-menopausa e o cuidado com a saúde mental são fundamentais para a qualidade de vida em todas as fases da idade adulta.
+                Com vasta experiência em <strong>multimorbidades</strong>, destaca-se pela capacidade de organizar o cuidado de pacientes complexos e polifarmácia, garantindo segurança e equilíbrio terapêutico.
+              </p>
+              <p>
+                Acredita em uma medicina integral, focada na longevidade, controle de doenças crônicas e saúde mental para uma melhor qualidade de vida.
               </p>
             </div>
 
-            {/* Grid de Atributos Atualizado */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-12 w-full">
+            {/* Grid de Atributos */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mt-10 w-full">
               {[
-                { icon: <GraduationCap className="w-5 h-5" />, label: "Especialista USP-RP" },
-                { icon: <BookOpen className="w-5 h-5" />, label: "Docente em Medicina" },
-                { icon: <FileCheck className="w-5 h-5" />, label: CRM_RQE },
-                { icon: <HeartPulse className="w-5 h-5" />, label: "Foco em Casos Complexos" },
-                { icon: <MapPin className="w-5 h-5" />, label: "OneCare Espaço e Saúde" },
-                { icon: <MessageCircle className="w-5 h-5" />, label: "Atendimento Humanizado" },
+                { icon: <GraduationCap className="w-4 h-4" />, label: "Residência USP-RP" },
+                { icon: <BookOpen className="w-4 h-4" />, label: "Professora UNINOVE" },
+                { icon: <FileCheck className="w-4 h-4" />, label: CRM_RQE },
+                { icon: <HeartPulse className="w-4 h-4" />, label: "Foco em Casos Complexos" },
+                { icon: <ShieldCheck className="w-4 h-4" />, label: "Segurança Farmacológica" },
+                { icon: <MapPin className="w-4 h-4" />, label: "OneCare Espaço e Saúde" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 group">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[rgb(var(--brand))] group-hover:bg-[rgb(var(--brand))] group-hover:text-white transition-colors duration-300">
+                <div key={i} className="flex items-center gap-3 group">
+                  <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-[rgb(var(--brand))] group-hover:bg-[rgb(var(--brand))] group-hover:text-white transition-all duration-300">
                     {item.icon}
                   </div>
-                  <span className="text-sm font-medium text-slate-700 whitespace-nowrap">{item.label}</span>
+                  <span className="text-[13px] font-medium text-slate-700">{item.label}</span>
                 </div>
               ))}
             </div>
 
             {/* CTA */}
-            <div className="mt-16 pt-8 border-t border-slate-200 w-full flex flex-col sm:flex-row items-center gap-6">
+            <div className="mt-12 pt-8 border-t border-slate-200 w-full flex flex-col sm:flex-row items-center gap-6">
               <a
                 href={waHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-[rgb(var(--brand))] px-10 py-5 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-[rgb(var(--brand)/0.3)]"
+                className="group inline-flex w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-[rgb(var(--brand))] px-10 py-5 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:shadow-xl hover:shadow-[rgb(var(--brand)/0.2)]"
               >
                 <MessageCircle className="w-5 h-5 transition-transform group-hover:rotate-12" />
                 <span>Agendar Consulta</span>
               </a>
               
-              <a href="#servicos" className="text-sm font-semibold text-slate-400 hover:text-[rgb(var(--brand))] transition-colors uppercase tracking-widest">
+              <a href="#servicos" className="text-xs font-bold text-slate-400 hover:text-[rgb(var(--brand))] transition-colors uppercase tracking-widest">
                 Conheça os serviços →
               </a>
             </div>
