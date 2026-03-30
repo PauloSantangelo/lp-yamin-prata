@@ -19,7 +19,7 @@ export default function HeaderClient({ waHref }: { waHref: string }) {
           className="flex items-center gap-3 group"
         >
           <Image
-            src="/images/logo/1.png"
+            src="/images/logo/logo1.png"
             alt="Logo Dra. Yasmin"
             width={36}
             height={36}

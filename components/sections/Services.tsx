@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 const DOCTOR_IMAGE = "/images/yasmin/yasmin6.webp";
-const LOGO_PATH = "/images/logo/1.png";
+const LOGO_PATH = "/images/logo/logo1.png";
 
 const SERVICES = [
   {

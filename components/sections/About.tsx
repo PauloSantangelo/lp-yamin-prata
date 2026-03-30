@@ -15,7 +15,7 @@ const MOBILE_IMAGES = [
   "/images/yasmin/yasmin8.webp",
 ];
 
-const LOGO_PATH = "/images/logo/1.png";
+const LOGO_PATH = "/images/logo/logo1.png";
 const WHATSAPP_PHONE = "5514991334579";
 const WHATSAPP_MESSAGE = "Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata.";
 const CRM_RQE = "CRM-SP: 178037 | RQE: 79913";
