@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { MessageCircle, GraduationCap, MapPin, HeartPulse, ShieldCheck, FileCheck, BookOpen } from "lucide-react";
+import {
+  MessageCircle,
+  GraduationCap,
+  MapPin,
+  HeartPulse,
+  ShieldCheck,
+  FileCheck,
+  BookOpen,
+} from "lucide-react";
 
 const DESKTOP_IMAGES = [
   "/images/yasmin/yasmin3.webp",
@@ -15,66 +23,113 @@ const MOBILE_IMAGES = [
   "/images/yasmin/yasmin8.webp",
 ];
 
-const LOGO_PATH = "/images/logo/logo1.png";
+const LOGO_CANDIDATES = [
+  "/images/logo/logo1.png",
+  "/images/logo/logo1.webp",
+  "/images/logo/logo.png",
+  "/logo.png",
+];
+
 const WHATSAPP_PHONE = "5514991334579";
-const WHATSAPP_MESSAGE = "Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata.";
+const WHATSAPP_MESSAGE =
+  "Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata.";
 const CRM_RQE = "CRM-SP: 178037 | RQE: 79913";
+
+function SafeLogo({
+  alt,
+  width = 140,
+  height = 50,
+  className = "",
+}: {
+  alt: string;
+  width?: number;
+  height?: number;
+  className?: string;
+}) {
+  const [srcIndex, setSrcIndex] = useState(0);
+  const [hidden, setHidden] = useState(false);
+
+  const currentSrc = LOGO_CANDIDATES[srcIndex];
+
+  if (hidden) return null;
+
+  return (
+    <Image
+      src={currentSrc}
+      alt={alt}
+      width={width}
+      height={height}
+      unoptimized
+      priority={false}
+      className={className}
+      onError={() => {
+        if (srcIndex < LOGO_CANDIDATES.length - 1) {
+          setSrcIndex((prev) => prev + 1);
+        } else {
+          setHidden(true);
+        }
+      }}
+    />
+  );
+}
 
 export default function About() {
   const [active, setActive] = useState(0);
 
   const waHref = useMemo(() => {
-    return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+    return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
+      WHATSAPP_MESSAGE
+    )}`;
   }, []);
 
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (typeof window === "undefined") return;
+
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     if (reduce) return;
 
-    const t = setInterval(() => {
+    const t = window.setInterval(() => {
       setActive((i) => (i + 1) % MOBILE_IMAGES.length);
     }, 4200);
 
-    return () => clearInterval(t);
+    return () => window.clearInterval(t);
   }, []);
 
   return (
-    <section id="sobre" className="bg-[#fcfaf9] py-16 md:py-28 overflow-hidden font-sans">
+    <section
+      id="sobre"
+      className="bg-[#fcfaf9] py-16 md:py-28 overflow-hidden font-sans"
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
-          
-          {/* ================= Coluna Visual ================= */}
           <div className="relative group order-1 lg:order-2">
-            
-            {/* LOGO MOBILE: Aparece antes da foto apenas em telas pequenas */}
             <div className="mb-8 lg:hidden opacity-90">
-              <Image 
-                src={LOGO_PATH} 
-                alt="Dra. Yasmin Prata Ribeiro" 
-                width={140} 
-                height={50} 
+              <SafeLogo
+                alt="Dra. Yasmin Prata Ribeiro"
+                width={140}
+                height={50}
                 className="object-contain h-auto mix-blend-multiply"
               />
             </div>
 
-            {/* Logo flutuante como marca d'água (Apenas Desktop) */}
             <div className="absolute -top-10 -left-10 z-0 hidden lg:block opacity-10 group-hover:opacity-25 transition-opacity duration-1000 pointer-events-none">
-              <Image 
-                src={LOGO_PATH} 
-                alt="" 
-                width={180} 
-                height={180} 
+              <SafeLogo
+                alt=""
+                width={180}
+                height={180}
                 className="object-contain mix-blend-multiply"
               />
             </div>
 
-            {/* Desktop Grid */}
             <div className="hidden md:grid grid-cols-2 gap-6 relative z-10">
               {DESKTOP_IMAGES.map((src, idx) => (
                 <div
                   key={src}
                   className={`relative overflow-hidden rounded-[40px] shadow-2xl transition-all duration-700 hover:scale-[1.03] ${
-                    idx === 1 ? "mt-12" : "" 
+                    idx === 1 ? "mt-12" : ""
                   }`}
                 >
                   <div className="relative aspect-[3/4] w-full bg-slate-200">
@@ -91,7 +146,6 @@ export default function About() {
               ))}
             </div>
 
-            {/* Mobile Slideshow */}
             <div className="md:hidden relative aspect-[4/5] overflow-hidden rounded-[35px] shadow-xl">
               {MOBILE_IMAGES.map((src, i) => (
                 <Image
@@ -107,23 +161,22 @@ export default function About() {
               ))}
             </div>
 
-            {/* Badge de Experiência */}
             <div className="absolute -bottom-6 -right-2 md:right-6 bg-white p-5 rounded-[28px] shadow-2xl border border-slate-50 z-20 max-w-[170px] hidden sm:block text-center">
-              <span className="text-2xl font-serif italic text-[rgb(var(--brand))] leading-none">12+ anos</span>
-              <span className="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">Prática Clínica</span>
+              <span className="text-2xl font-serif italic text-[rgb(var(--brand))] leading-none">
+                12+ anos
+              </span>
+              <span className="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mt-1">
+                Prática Clínica
+              </span>
             </div>
           </div>
 
-          {/* ================= Coluna Conteúdo ================= */}
           <div className="flex flex-col items-start order-2 lg:order-1">
-            
-            {/* LOGO DESKTOP: Aparece apenas em telas grandes (lg) */}
             <div className="mb-8 hidden lg:block transition-opacity hover:opacity-100 opacity-90">
-              <Image 
-                src={LOGO_PATH} 
-                alt="Dra. Yasmin Prata" 
-                width={140} 
-                height={50} 
+              <SafeLogo
+                alt="Dra. Yasmin Prata"
+                width={140}
+                height={50}
                 className="object-contain h-auto mix-blend-multiply"
               />
             </div>
@@ -131,7 +184,7 @@ export default function About() {
             <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-[rgb(var(--brand))] mb-4 opacity-70">
               Trajetória e Especialidade
             </span>
-            
+
             <h2 className="text-3xl md:text-4xl font-light text-slate-800 leading-[1.15] tracking-tight mb-8">
               Sobre a <br />
               <span className="font-serif italic text-[rgb(var(--brand))] text-4xl md:text-5xl block mt-1">
@@ -141,39 +194,72 @@ export default function About() {
 
             <div className="space-y-5 text-slate-600 font-light leading-relaxed text-base lg:text-[1.05rem]">
               <p>
-                A Dra. Yasmin Prata Ribeiro é Médica de Família com <strong>especialização (residência médica) pelo Hospital das Clínicas da USP Ribeirão Preto</strong>. Sua conduta médica une o rigor técnico à experiência acadêmica.
+                A Dra. Yasmin Prata Ribeiro é Médica de Família com{" "}
+                <strong>
+                  especialização (residência médica) pelo Hospital das Clínicas
+                  da USP Ribeirão Preto
+                </strong>
+                . Sua conduta médica une o rigor técnico à experiência acadêmica.
               </p>
               <p>
-                Atua também como <strong>professora e supervisora do Curso de Medicina da UNINOVE Bauru</strong>, mantendo-se em constante atualização com as melhores práticas científicas e diretrizes internacionais.
+                Atua também como{" "}
+                <strong>
+                  professora e supervisora do Curso de Medicina da UNINOVE Bauru
+                </strong>
+                , mantendo-se em constante atualização com as melhores práticas
+                científicas e diretrizes internacionais.
               </p>
               <p>
-                Com vasta experiência em <strong>multimorbidades</strong>, destaca-se pela capacidade de organizar o cuidado de pacientes complexos e polifarmácia, garantindo segurança e equilíbrio terapêutico.
+                Com vasta experiência em <strong>multimorbidades</strong>,
+                destaca-se pela capacidade de organizar o cuidado de pacientes
+                complexos e polifarmácia, garantindo segurança e equilíbrio
+                terapêutico.
               </p>
               <p>
-                Acredita em uma medicina integral, focada na longevidade, controle de doenças crônicas e saúde mental para uma melhor qualidade de vida.
+                Acredita em uma medicina integral, focada na longevidade,
+                controle de doenças crônicas e saúde mental para uma melhor
+                qualidade de vida.
               </p>
             </div>
 
-            {/* Grid de Atributos */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mt-10 w-full">
               {[
-                { icon: <GraduationCap className="w-4 h-4" />, label: "Residência USP-RP" },
-                { icon: <BookOpen className="w-4 h-4" />, label: "Professora UNINOVE" },
-                { icon: <FileCheck className="w-4 h-4" />, label: CRM_RQE },
-                { icon: <HeartPulse className="w-4 h-4" />, label: "Foco em Casos Complexos" },
-                { icon: <ShieldCheck className="w-4 h-4" />, label: "Segurança Farmacológica" },
-                { icon: <MapPin className="w-4 h-4" />, label: "One Care Espaço e Saúde" },
+                {
+                  icon: <GraduationCap className="w-4 h-4" />,
+                  label: "Residência USP-RP",
+                },
+                {
+                  icon: <BookOpen className="w-4 h-4" />,
+                  label: "Professora UNINOVE",
+                },
+                {
+                  icon: <FileCheck className="w-4 h-4" />,
+                  label: CRM_RQE,
+                },
+                {
+                  icon: <HeartPulse className="w-4 h-4" />,
+                  label: "Foco em Casos Complexos",
+                },
+                {
+                  icon: <ShieldCheck className="w-4 h-4" />,
+                  label: "Segurança Farmacológica",
+                },
+                {
+                  icon: <MapPin className="w-4 h-4" />,
+                  label: "One Care Espaço e Saúde",
+                },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 group">
                   <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-[rgb(var(--brand))] group-hover:bg-[rgb(var(--brand))] group-hover:text-white transition-all duration-300">
                     {item.icon}
                   </div>
-                  <span className="text-[13px] font-medium text-slate-700">{item.label}</span>
+                  <span className="text-[13px] font-medium text-slate-700">
+                    {item.label}
+                  </span>
                 </div>
               ))}
             </div>
 
-            {/* CTA */}
             <div className="mt-12 pt-8 border-t border-slate-200 w-full flex flex-col sm:flex-row items-center gap-6">
               <a
                 href={waHref}
@@ -184,13 +270,15 @@ export default function About() {
                 <MessageCircle className="w-5 h-5 transition-transform group-hover:rotate-12" />
                 <span>Agendar Consulta</span>
               </a>
-              
-              <a href="#servicos" className="text-xs font-bold text-slate-400 hover:text-[rgb(var(--brand))] transition-colors uppercase tracking-widest">
+
+              <a
+                href="#servicos"
+                className="text-xs font-bold text-slate-400 hover:text-[rgb(var(--brand))] transition-colors uppercase tracking-widest"
+              >
                 Conheça os serviços →
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
