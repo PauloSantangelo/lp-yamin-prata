@@ -15,6 +15,7 @@ const MOBILE_IMAGES = [
   "/images/yasmin/yasmin8.webp",
 ];
 
+const LOGO_PATH = "/images/logo/1.png";
 const WHATSAPP_PHONE = "5514991334579";
 const WHATSAPP_MESSAGE = "Olá, gostaria de agendar uma consulta com a Dra. Yasmin Prata.";
 const CRM_RQE = "CRM-SP: 178037 | RQE: 79913";
@@ -38,15 +39,37 @@ export default function About() {
   }, []);
 
   return (
-    <section id="sobre" className="bg-[#fcfaf9] py-16 md:py-28 overflow-hidden">
+    <section id="sobre" className="bg-[#fcfaf9] py-16 md:py-28 overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid gap-12 lg:grid-cols-2 items-center">
           
           {/* ================= Coluna Visual ================= */}
-          {/* Mobile: Ordem 1 (Aparece primeiro) | Desktop: Ordem 2 (Vai para a direita) */}
           <div className="relative group order-1 lg:order-2">
+            
+            {/* LOGO MOBILE: Aparece antes da foto apenas em telas pequenas */}
+            <div className="mb-8 lg:hidden opacity-90">
+              <Image 
+                src={LOGO_PATH} 
+                alt="Dra. Yasmin Prata Ribeiro" 
+                width={140} 
+                height={50} 
+                className="object-contain h-auto mix-blend-multiply"
+              />
+            </div>
+
+            {/* Logo flutuante como marca d'água (Apenas Desktop) */}
+            <div className="absolute -top-10 -left-10 z-0 hidden lg:block opacity-10 group-hover:opacity-25 transition-opacity duration-1000 pointer-events-none">
+              <Image 
+                src={LOGO_PATH} 
+                alt="" 
+                width={180} 
+                height={180} 
+                className="object-contain mix-blend-multiply"
+              />
+            </div>
+
             {/* Desktop Grid */}
-            <div className="hidden md:grid grid-cols-2 gap-6">
+            <div className="hidden md:grid grid-cols-2 gap-6 relative z-10">
               {DESKTOP_IMAGES.map((src, idx) => (
                 <div
                   key={src}
@@ -68,7 +91,7 @@ export default function About() {
               ))}
             </div>
 
-            {/* Mobile: Slideshow */}
+            {/* Mobile Slideshow */}
             <div className="md:hidden relative aspect-[4/5] overflow-hidden rounded-[35px] shadow-xl">
               {MOBILE_IMAGES.map((src, i) => (
                 <Image
@@ -82,14 +105,6 @@ export default function About() {
                   sizes="100vw"
                 />
               ))}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-                {MOBILE_IMAGES.map((_, i) => (
-                  <div 
-                    key={i} 
-                    className={`h-1 rounded-full transition-all ${i === active ? "w-6 bg-white" : "w-2 bg-white/40"}`} 
-                  />
-                ))}
-              </div>
             </div>
 
             {/* Badge de Experiência */}
@@ -100,8 +115,19 @@ export default function About() {
           </div>
 
           {/* ================= Coluna Conteúdo ================= */}
-          {/* Mobile: Ordem 2 (Fica abaixo da imagem) | Desktop: Ordem 1 (Vai para a esquerda) */}
           <div className="flex flex-col items-start order-2 lg:order-1">
+            
+            {/* LOGO DESKTOP: Aparece apenas em telas grandes (lg) */}
+            <div className="mb-8 hidden lg:block transition-opacity hover:opacity-100 opacity-90">
+              <Image 
+                src={LOGO_PATH} 
+                alt="Dra. Yasmin Prata" 
+                width={140} 
+                height={50} 
+                className="object-contain h-auto mix-blend-multiply"
+              />
+            </div>
+
             <span className="text-[10px] uppercase tracking-[0.35em] font-bold text-[rgb(var(--brand))] mb-4 opacity-70">
               Trajetória e Especialidade
             </span>
@@ -136,7 +162,7 @@ export default function About() {
                 { icon: <FileCheck className="w-4 h-4" />, label: CRM_RQE },
                 { icon: <HeartPulse className="w-4 h-4" />, label: "Foco em Casos Complexos" },
                 { icon: <ShieldCheck className="w-4 h-4" />, label: "Segurança Farmacológica" },
-                { icon: <MapPin className="w-4 h-4" />, label: "OneCare Espaço e Saúde" },
+                { icon: <MapPin className="w-4 h-4" />, label: "One Care Espaço e Saúde" },
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3 group">
                   <div className="flex-shrink-0 w-9 h-9 rounded-full bg-white shadow-sm flex items-center justify-center text-[rgb(var(--brand))] group-hover:bg-[rgb(var(--brand))] group-hover:text-white transition-all duration-300">

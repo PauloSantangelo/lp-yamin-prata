@@ -100,7 +100,7 @@ export default function Clinic() {
             </h2>
 
             <p className="text-slate-600 font-light leading-relaxed text-lg mb-10">
-              As consultas são realizadas no <strong>Espaço Saúde OneCare</strong>, local de fácil acesso planejado para oferecer privacidade e conforto absoluto.
+              As consultas são realizadas no <strong>Espaço Saúde One Care</strong>, local de fácil acesso planejado para oferecer privacidade e conforto absoluto.
             </p>
 
             {/* Lista de diferenciais em formato de "Ticks" em vez de cards pesados */}

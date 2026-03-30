@@ -31,7 +31,7 @@ export default function Contact() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide">Espaço Saúde - Rede OneCare</p>
+                  <p className="text-sm font-semibold text-slate-700 uppercase tracking-wide">Espaço Saúde - Rede One Care</p>
                   <div className="mt-1 text-xs text-slate-500 leading-relaxed">
                     <p>R. Ruy Mendes de Rosis, 1-125 - Jd. Infante Dom Henrique</p>
                     <p className="mt-1 text-[rgb(var(--brand))] font-medium flex items-center gap-1">
@@ -98,7 +98,7 @@ export default function Contact() {
                 height="480"
                 style={{ border: 0, filter: "grayscale(0.1) contrast(1.02)" }}
                 loading="lazy"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.1095392070114!2d-49.0620952!3d-22.3306917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bf67eb2d8b584f%3A0xe54955b25327f315!2sEspa%C3%A7o%20Sa%C3%BAde%20-%20Rede%20OneCare!5e0!3m2!1spt-BR!2sbr!4v1715632485631!5m2!1spt-BR!2sbr" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.1095392070114!2d-49.0620952!3d-22.3306917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bf67eb2d8b584f%3A0xe54955b25327f315!2sEspa%C3%A7o%20Sa%C3%BAde%20-%20Rede%20One%20Care!5e0!3m2!1spt-BR!2sbr!4v1715632485631!5m2!1spt-BR!2sbr" 
                 className="w-full grayscale-[0.2]"
               />
             </div>

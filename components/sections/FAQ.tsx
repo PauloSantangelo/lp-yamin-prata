@@ -9,7 +9,7 @@ const WHATSAPP_MESSAGE = "Olá, gostaria de agendar uma consulta com a Dra. Yasm
 const STEPS = [
   {
     title: "Agendamento",
-    desc: "O contato inicial é feito via WhatsApp. Nossa equipe organiza sua consulta no Espaço Saúde - Rede OneCare, em Bauru, com total conveniência.",
+    desc: "O contato inicial é feito via WhatsApp. Nossa equipe organiza sua consulta no Espaço Saúde - Rede One Care, em Bauru, com total conveniência.",
     icon: <Calendar className="w-6 h-6" />,
   },
   {
@@ -31,15 +31,15 @@ const FAQS = [
   },
   {
     q: "Onde o consultório está localizado em Bauru?",
-    a: "Os atendimentos presenciais ocorrem na OneCare Espaço e Saúde, na Rua Ruy Mendes de Rosis, 1-125 (Jardim Infante Dom Henrique). Como referência, estamos localizados logo ao lado do estacionamento do Bauru Shopping.",
+    a: "Os atendimentos presenciais ocorrem na One Care Espaço e Saúde, na Rua Ruy Mendes de Rosis, 1-125 (Jardim Infante Dom Henrique). Como referência, estamos localizados logo ao lado do estacionamento do Bauru Shopping.",
   },
   {
     q: "A clínica possui acessibilidade e estacionamento?",
-    a: "Sim. A OneCare oferece estacionamento privativo no local e elevadores modernos, garantindo acessibilidade total e conforto para pacientes idosos ou com mobilidade reduzida.",
+    a: "Sim. A One Care oferece estacionamento privativo no local e elevadores modernos, garantindo acessibilidade total e conforto para pacientes idosos ou com mobilidade reduzida.",
   },
   {
-    q: "A Dra. atende Sul América, Bradesco Saúde, Cassi ou APAES?",
-    a: "Os atendimentos são particulares para garantir o tempo e o rigor técnico que casos complexos exigem. No entanto, emitimos nota fiscal e toda a documentação necessária para que pacientes da Sul América, Bradesco Saúde, Cassi e APAES solicitem o reembolso junto aos seus planos.",
+    q: "A Dra. atende Sul América, Bradesco Saúde, Cassi ou APAS?",
+    a: "Os atendimentos são particulares para garantir o tempo e o rigor técnico que casos complexos exigem. No entanto, emitimos nota fiscal e toda a documentação necessária para que pacientes da Sul América, Bradesco Saúde, Cassi e APAS solicitem o reembolso junto aos seus planos.",
   },
   {
     q: "Qual a diferença entre Médico de Família e um Clínico Geral?",
