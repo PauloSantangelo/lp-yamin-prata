@@ -194,31 +194,35 @@ export default function About() {
 
             <div className="space-y-5 text-slate-600 font-light leading-relaxed text-base lg:text-[1.05rem]">
               <p>
-                A Dra. Yasmin Prata Ribeiro é Médica de Família com{" "}
-                <strong>
-                  especialização (residência médica) pelo Hospital das Clínicas
-                  da USP Ribeirão Preto
-                </strong>
-                . Sua conduta médica une o rigor técnico à experiência acadêmica.
+                Sou médica, especialista pela USP Ribeirão Preto em Medicina de
+                Família e Comunidade . Com uma trajetória de mais de 12 anos
+                dedicados à prática clínica, minha missão é oferecer um cuidado
+                médico integral, humano e personalizado.
               </p>
+
               <p>
-                Atua também como{" "}
-                <strong>
-                  professora e supervisora do Curso de Medicina da UNINOVE Bauru
-                </strong>
-                , mantendo-se em constante atualização com as melhores práticas
-                científicas e diretrizes internacionais.
+                Acredito no resgate do papel do "médico da família": aquele
+                profissional de antigamente tão querido e resolutivo que atuava
+                como referência para as necessidades de saúde dos seus pacientes,
+                compreendendo que cuidar de gente vai muito além de tratar
+                sintomas isolados. Minha especialidade é olhar para o indivíduo
+                como um todo, garantindo o manejo das condições mais prevalentes
+                na população com segurança, ciência e empatia.
               </p>
+
               <p>
-                Com vasta experiência em <strong>multimorbidades</strong>,
-                destaca-se pela capacidade de organizar o cuidado de pacientes
-                complexos e polifarmácia, garantindo segurança e equilíbrio
-                terapêutico.
+                Além da prática assistencial, dedico-me à formação das novas
+                gerações de médicos como professora do curso de Medicina da
+                UNINOVE Bauru há 8 anos. Essa vivência acadêmica me mantém em
+                constante atualização e alinhada com as melhores evidências
+                científicas, que aplico diariamente em meu consultório para
+                promover a saúde e o bem-estar dos meus pacientes.
               </p>
+
               <p>
-                Acredita em uma medicina integral, focada na longevidade,
-                controle de doenças crônicas e saúde mental para uma melhor
-                qualidade de vida.
+                Se você busca um atendimento médico que prioriza a escuta, a
+                prevenção e uma relação de confiança duradoura, será um prazer
+                recebê-lo(a).
               </p>
             </div>
 
